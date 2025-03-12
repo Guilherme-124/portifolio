@@ -111,13 +111,9 @@ body{
     gap: 80px;
 }
 
-#footer{
+footer{
     border-top: 1px solid var(--footer-text);
-}
-
-.footer{
-    width: 95%;
-    margin: auto;
+    padding: 0 2.5%;
 }
 
 h4, spam{

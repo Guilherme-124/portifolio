@@ -1,9 +1,12 @@
-*{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     text-decoration: none;
     list-style: none;
 }
 
-:root{
+:root {
     --background-color: #0D0D0D;
     --text-color: #EBEBEB;
     --btn-color: #3DB800;
@@ -11,47 +14,63 @@
     --title-size: 1.3rem;
 }
 
-body{
+body {
     background-color: var(--background-color);
     overflow-X: hidden;
 }
 
-h4{
+h4 {
     font-size: var(--title-size);
 }
 
-h5{
+h5 {
     font-size: var(--font-size);
 }
 
-.header {
+header {
     background-color: var(--background-color);
     position: fixed;
     width: 100%;
     display: flex;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .8);
     padding: 18px;
-    z-index: 990;
+    z-index: 100;
     transition: .2s ease;
 }
 
-.header ul{
-    display: flex;
-    margin: auto;
-    margin-left: 50px;
-
+header nav {
+    width: 100%;
 }
 
-.header a{
-    margin: 5px 60px;
+header ul {
+    display: flex;
+    justify-content: space-around;
+    /*reset brute force, i don't know why padding is there*/
+    padding: 0;
+    /*reset brute force, i don't know why margin is*/
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+header a {
+    padding: 14px 30px;
     font-size: var(--font-size);
     color: var(--text-color);
     text-decoration: none;
     transition: .2s ease;
 }
 
-.header a:hover{
+header a:hover {
     color: var(--btn-color);
+    background-color: var(--text-color);
+    border-radius: .6rem;
+    border: 2px solid var(--btn-color);
+    box-shadow: 0 0 20px var(--btn-color);
+}
+
+header a:active {
+    background-color: white;
+    box-shadow: none;
 }
 
 #home {
@@ -70,17 +89,15 @@ h5{
     width: 3%;
     top: 0;
     right: 0;
-    z-index: 950;
     transition: .4s ease;
 }
 
 .closed .diagonal {
     width: 100%;
-    z-index: 1000;
     pointer-events: none;
 }
 
-.diagonal::before{
+.diagonal::before {
     content: '';
     position: absolute;
     height: 100%;
@@ -89,7 +106,7 @@ h5{
     background: linear-gradient(to bottom right, transparent 50%, #0D0D0D 50%);
 }
 
-.diagonal:hover{
+.diagonal:hover {
     width: 4%;
 }
 
@@ -103,11 +120,10 @@ h5{
     top: 55%;
     margin: 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, .8);
-    z-index: 800;
     transition: .3s ease;
 }
 
-.text-bar:after{
+.text-bar:after {
     content: '';
     position: absolute;
     height: 100%;
@@ -140,7 +156,7 @@ h5{
 #introduction {
     width: 90%;
     justify-content: center;
-    margin:  100px auto;
+    margin: 100px auto;
     color: var(--text-color);
     display: grid;
     grid-template-columns: 60% 30%;
@@ -172,6 +188,7 @@ h5{
     color: var(--text-color);
     justify-content: center;
 }
+
 .projects-grid {
     width: 80%;
     display: grid;
@@ -187,7 +204,7 @@ h5{
     }
 }
 
-.projects-grid div{
+.projects-grid div {
     margin: auto;
 }
 
@@ -219,16 +236,16 @@ h5{
     display: relative;
 }
 
-.image{
+.image {
     width: 50vh;
     transition: .3s ease;
 }
 
-.project .image:hover{
+.project .image:hover {
     transform: translate(-5px);
 }
 
-.description{
+.description {
     position: absolute;
     width: 50vh;
     background-color: var(--background-color);
@@ -239,7 +256,7 @@ h5{
     overflow: hidden;
 }
 
-.hovered{
+.hovered {
     background-color: #141414;
     transition: .6s ease;
     border-radius: 10px;
@@ -247,22 +264,22 @@ h5{
     width: 55vh;
 }
 
-.hovered .project{
+.hovered .project {
     transform: translateX(-3vh);
 }
 
-.hovered .image{
+.hovered .image {
     transform: translateX(-5px);
 }
 
-.hovered .bar{
+.hovered .bar {
     left: 99%;
     height: 100%;
     transition: .3s ease;
 
 }
 
-.hovered .description{
+.hovered .description {
     transform: translateX(-5px);
     opacity: .6;
     height: 40%;
@@ -278,7 +295,7 @@ h5{
     top: 0;
     right: 0;
     display: flex;
-    z-index: 970;
+    z-index: 200;
 }
 
 .more {
@@ -288,21 +305,23 @@ h5{
     left: 15%;
     background-color: #141414;
     overflow-y: auto;
-    z-index: 980;
+    z-index: 300;
     position: fixed;
     border-radius: 20px;
 }
 
 
-footer{
+footer {
     padding: 20px;
     color: silver;
     border-top: 1px grey solid;
     background-color: #1F1F1F;
 }
-footer p{
+
+footer p {
     font-size: 1rem;
 }
-footer spam{
+
+footer spam {
     font-size: .9rem;
 }

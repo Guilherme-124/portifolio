@@ -107,7 +107,7 @@ h5{
     transition: .3s ease;
 }
 
-.text-bar:after{
+.text-bar::after{
     content: '';
     position: absolute;
     height: 100%;
@@ -289,10 +289,42 @@ h5{
     background-color: #141414;
     overflow-y: auto;
     z-index: 980;
+    display: flex;
     position: fixed;
-    border-radius: 20px;
+    border-radius: 25px;
 }
 
+.left {
+    width: 50%;
+}
+
+.window-img {
+    width: 95%;
+    height: auto;
+    display: flex;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    top: 0;
+}
+
+.project-text {
+    margin: 25px;
+    color: silver;
+}
+
+.code-container {
+    color: silver;
+    background-color: #1F1F1F;
+    width: 50%;
+    border-radius: 5%;
+    right: 0;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+}
+
+.code-container p {
+    margin: 5px 15px;
+}
 
 footer{
     padding: 20px;

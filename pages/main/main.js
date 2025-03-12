@@ -1,16 +1,53 @@
-function open() {
-    document.getElementById('transition').classList.remove('closed');
+
+const code = `
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+    struct node *next;
+    int number;
+}
+node;
+
+int main(void)
+{
+    node *aux = list;
+    while(aux != NULL)
+    {
+        node *ptr = aux;
+        aux = aux->next;
+        free(ptr)
+    }
+}
+`;
+
+const Project1 = `
+Description of the project
+what the project does
+how i did it
+how to use
+what i learnt
+`;
+
+function appendNewElement(position, element) {
+    let newElement = document.createElement(element);
+    position.insertAdjacentElement('beforeend', newElement);
+    return newElement;
 }
 
-function addHovered(parent) {
-    parent.classList.add('hovered');
+function textPrinter(position, text) {
+    let splitedText = text.trim().split('\n');
+    splitedText.forEach((line) => {
+        let Rows = document.createElement('p');
+        Rows.textContent = line;
+        position.appendChild(Rows);
+    });
 }
-function remHovered(parent) {
-    parent.classList.remove('hovered');
-}
+
 window.onload = function () {
     setTimeout(function () {
-        open();
+        document.getElementById('transition').classList.remove('closed');
         // I know that i should avoid using .style instead of the classlist
         // i used a .style here becouse it will be done only once and it will stay like this after
         document.querySelector('.text-bar').style.color = 'var(--text-color)';
@@ -22,21 +59,20 @@ window.onload = function () {
         if (!parent) return;
 
         img.addEventListener('click', function () {
-            addHovered(parent);
+            parent.classList.add('hovered');
         });
 
         img.addEventListener('mouseenter', function () {
 
             timer = setTimeout(function () {
-                addHovered(parent);
+                parent.classList.add('hovered');
             }, 800);
         });
-
 
         parent.addEventListener('mouseleave', function () {
             clearTimeout(timer);
             setTimeout(function () {
-                remHovered(parent);
+                parent.classList.remove('hovered');
             }, 150);
         });
     });
@@ -65,12 +101,43 @@ window.addEventListener('scroll', function () {
 });
 
 function openMore(btn) {
-    let filter = document.createElement('div');
-    let newWindow = document.createElement('div');
+    let project = btn.closest('div[id]');
+    console.log(project.id);
+    console.log(window[projects.id].id);
     let section = document.getElementById('projects');
-
-    section.insertAdjacentElement('afterbegin', newWindow);
-    newWindow.classList.add('more');
-    section.insertAdjacentElement('afterbegin', filter);
+    //creating a filter and a new window
+    let filter = appendNewElement(section, 'div')
     filter.classList.add('filter');
+    let newWindow = appendNewElement(section, 'div');
+    newWindow.classList.add('more');
+
+    //creating a div for the left side of the window (description of the program)
+    newDiv = appendNewElement(newWindow, 'div');
+    newDiv.classList.add('left');
+
+    //getting the index of the project img
+    let projectImg = document.querySelector('.hovered');
+    projectImg = projectImg.querySelector('img');
+
+    // creating a copy of the img for the new window
+    let img = appendNewElement(newDiv, 'img');
+    img.src = projectImg.src;
+    img.classList.add('window-img');
+
+    // creating a description div for the code description
+    description = appendNewElement(newDiv, 'div');
+    description.classList.add('project-text');
+
+    textPrinter(description, window[project.id].id);
+
+    //creating the left side container (code)
+    let codeContainer = appendNewElement(newWindow, 'div');
+    codeContainer.classList.add('code-container');
+
+    textPrinter(codeContainer, code);
+
+    filter.addEventListener('click', function() {
+        if (filter) filter.remove();
+        if (newWindow) newWindow.remove();
+    });
 };

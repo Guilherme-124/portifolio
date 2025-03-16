@@ -1,34 +1,84 @@
+// im going to put the right codes and descriptions with time
+// but for now i'm gonna leave those here
 
-const code = `
-#include <stdio.h>
-#include <stdlib.h>
+const Programs = {
+    code1: `window.onload = function () {
+    setTimeout(function () {
+        document.getElementById('transition').classList.remove('closed');
+        // I know that i should avoid using .style instead of the classlist
+        // i used a .style here becouse it will be done only once and it will stay like this after
+        document.querySelector('.text-bar').style.color = 'var(--text-color)';
+    }, 300);
 
-typedef struct node
-{
-    struct node *next;
-    int number;
-}
-node;
+    document.querySelectorAll('.project img').forEach(img => {
+        let timer;
+        let parent = img.closest('div[id]');
+        if (!parent) return;
 
-int main(void)
-{
-    node *aux = list;
-    while(aux != NULL)
-    {
-        node *ptr = aux;
-        aux = aux->next;
-        free(ptr)
-    }
-}
-`;
+        img.addEventListener('click', function () {
+            parent.classList.add('hovered');
+        });
 
-const Project1 = `
+        img.addEventListener('mouseenter', function () {
+
+            timer = setTimeout(function () {
+                parent.classList.add('hovered');
+            }, 800);
+        });
+
+        parent.addEventListener('mouseleave', function () {
+            clearTimeout(timer);
+            setTimeout(function () {
+                parent.classList.remove('hovered');
+            }, 150);
+        });
+    });
+};
+`,
+    code3: ``,
+    code4: ``
+};
+
+
+const Projectcs = {
+    Project1: `
 Description of the project
 what the project does
 how i did it
 how to use
 what i learnt
-`;
+`,
+    Project2: `
+Description of the project
+what the project does
+how i did it
+how to use
+what i learnt
+`,
+    Project3: `
+Description of the project
+what the project does
+how i did it
+how to use
+what i learnt
+`,
+    Project4: `
+Description of the project
+what the project does
+how i did it
+how to use
+what i learnt
+`
+};
+
+
+const Bool = ['true','false'];
+const world = ['window','document'];
+const numbers = ['Infinity', 'NaN'];
+const Adresses = ['null','undefined'];
+const KeyWord = ['if','else','return','function','class','let','var'];
+const Operators = ['+','-','*','/','&&','||','=','==','===','!','?','<','>','?'];
+
 
 function appendNewElement(position, element) {
     let newElement = document.createElement(element);
@@ -36,12 +86,54 @@ function appendNewElement(position, element) {
     return newElement;
 }
 
-function textPrinter(position, text) {
+function NewCLass(word, Rows) {
+    if (KeyWord.includes(word)){
+        return Rows.replace(new RegExp(`\\b${word}\\b`, 'g' ), `<span class="KeyWord">${word}</span>`);
+    } else if (Bool.includes(word)){
+        return Rows.replace(new RegExp(`\\b${word}\\b`, 'g' ), `<span class="Boolean">${word}</span>`);
+    } else if (Adresses.includes(word)){
+        return Rows.replace(new RegExp(`\\b${word}\\b`, 'g' ), `<span class="Adresses">${word}</span>`);
+    } else if (Operators.includes(word)){
+        return Rows.replace(new RegExp(`\\b${word}\\b`, 'g' ), `<span class="Operators">${word}</span>`);
+    } else if (world.includes(word)){
+        return Rows.replace(new RegExp(`\\b${word}\\b`, 'g' ), `<span class="world">${word}</span>`);
+    } else if (!isNaN(word) && !isNaN(parseFloat(word))){
+        return Rows.replace(new RegExp(`\\b${word}\\b`, 'g' ), `<span class="number">${word}</span>`);
+    };
+    return Rows;
+}
+
+function checkStrs(line) {
+    let stringTracker;
+    Row = line.split(/([\'\"\`])/);
+    Row.forEach((word) => {
+        
+    });
+
+}
+
+function Printer(position, text, type) {
+    // get code;
     let splitedText = text.trim().split('\n');
     splitedText.forEach((line) => {
-        let Rows = document.createElement('p');
-        Rows.textContent = line;
-        position.appendChild(Rows);
+        let Row = document.createElement('p');
+        Row.textContent = line;
+        if (type == 'code') {
+            // get each word of each line
+            let words = line.trim().split(/([\\\/;:'\"{}\[\]\(\).,\s])/g);
+            // console.log('After: ', words);
+            words.forEach((word) => {
+                if (word == '(') {
+                    if(!trackFunction) return;
+                    Row.innerHTML = Row.innerHTML.replace(new RegExp(`\\b${trackFunction}\\b`, 'g'), `<span class="func">${trackFunction}</span>`);
+                }
+                // for each word in words check type
+                Row.innerHTML = NewCLass(word, Row.innerHTML);
+                trackFunction = word;
+
+            });
+        }
+        position.appendChild(Row);
     });
 }
 
@@ -102,8 +194,9 @@ window.addEventListener('scroll', function () {
 
 function openMore(btn) {
     let project = btn.closest('div[id]');
-    console.log(project.id);
-    console.log(window[projects.id].id);
+    project = project.id;
+    let code = btn.id;
+    // console.log(window[projects.id].id);
     let section = document.getElementById('projects');
     //creating a filter and a new window
     let filter = appendNewElement(section, 'div')
@@ -128,13 +221,13 @@ function openMore(btn) {
     description = appendNewElement(newDiv, 'div');
     description.classList.add('project-text');
 
-    textPrinter(description, window[project.id].id);
+    Printer(description, Projectcs[project]);
 
     //creating the left side container (code)
     let codeContainer = appendNewElement(newWindow, 'div');
     codeContainer.classList.add('code-container');
 
-    textPrinter(codeContainer, code);
+    Printer(codeContainer, Programs[code], 'code');
 
     filter.addEventListener('click', function() {
         if (filter) filter.remove();

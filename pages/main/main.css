@@ -287,7 +287,6 @@ h5{
     top: 100px;
     left: 15%;
     background-color: #141414;
-    overflow-y: auto;
     z-index: 980;
     display: flex;
     position: fixed;
@@ -296,6 +295,8 @@ h5{
 
 .left {
     width: 50%;
+    /* overflow-y: auto; */
+
 }
 
 .window-img {
@@ -319,12 +320,43 @@ h5{
     width: 50%;
     border-radius: 5%;
     right: 0;
+    padding: 10px;
     box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+    content: fit-content;
+    overflow-x: auto;
 }
 
-.code-container p {
-    margin: 5px 15px;
+.code-container p, span{
+    margin: 0;
+    white-space: pre;
 }
+
+
+.world{
+    color: #BD93F9;
+}
+.Bool {
+    color: #BD93F9;
+}
+.number {
+    color: #BD93F9;
+}
+.Operators {
+    color: #FF79C6;
+}
+.Adresses {
+    color: #50FA7B;
+}
+.KeyWord{
+    color: #FF79C6;
+}
+.func {
+    color: #50FA7B;
+}
+.Str {
+    color: #F1FA8C;
+}
+
 
 footer{
     padding: 20px;

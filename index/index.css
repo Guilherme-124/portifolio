@@ -1,0 +1,134 @@
+*{
+    list-style: none;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root{
+    --background-color: #0D0D0D;
+    --text-color: #EBEBEB;
+    --footer-text: #D6D6D6;
+    --hyper-text: #2A6600;
+    --origami: #001229;
+    --music: #290000;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: left;
+    background: transparent;
+    justify-content: space-between;
+    transition: all .4s ease;
+    padding: 22px 15%;
+    z-index: 700;
+    border-bottom: 1px solid transparent;
+}
+
+header.scroll{
+    padding: 14px 15%;
+    background: #141414;
+    transition: .3s;
+    border-bottom: 1px solid transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+body{
+    background-color: var(--background-color);
+}
+
+.menu {
+    display: flex;
+}
+
+.menu-item{
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.0rem;
+    padding: 10px 25px;
+    margin: 2px;
+    border-radius: 0.5rem;
+    transition: all .3s ease;
+}
+
+.menu-item:hover{
+    color: var(--hyper-text);
+}
+
+.home {
+    background: url(https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    color: var(--text-color);
+}
+
+.floating-text {
+    position: relative;
+    top: 55%;
+    margin: 50px;
+    font-weight: bold;
+    transition: .8s ease;
+}
+.floating-text h2{
+    font-size: 1.8rem;
+}
+
+.floating-text:hover{
+    transform: translateY(2px) translatex(-3px);
+}
+
+.hobbies {
+    position: relative;
+    width: 100%;
+}
+
+.hobbies p{
+    font-size: 1.2rem;
+}
+
+#origami, #music{
+    background-color: var(--origami);
+    width: 90%;
+    height: auto;
+    margin: auto;
+    color: var(--text-color);
+    padding: 80px 15% 80px;
+}
+
+#music {
+    background-color: var(--music);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+}
+
+#footer{
+    border-top: 1px solid var(--footer-text);
+}
+
+.footer{
+    width: 95%;
+    margin: auto;
+}
+
+h4, spam{
+    margin: 1%;
+    color: #D6D6D6;
+}
+
+h4{
+    font-size: .9rem;
+}
+
+spam{
+    font-size: .8rem;
+}
